@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
-class mainPage{
+class MainPage{
     readonly page: Page;
     readonly searchInput: Locator;
     readonly registrationButton: Locator;
