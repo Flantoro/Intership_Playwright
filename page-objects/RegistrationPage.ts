@@ -21,27 +21,27 @@ export class RegistrationPage{
         this.sendButton = page.locator('[name="commit"]');
     }
 
-    async fillLoginInput(login){
+    async fillLoginInput(login : string){
         await this.loginInput.fill(login);
     }
 
-    async fillPasswordInput(password){
+    async fillPasswordInput(password : string){
         await this.passwordInput.fill(password); 
     }
 
-    async fillRepearPasswordInput(password){
+    async fillRepearPasswordInput(password : string){
         await this.repeatPasswordInput.fill(password);
     }
 
-    async fillFirstNameInput(firstName){
+    async fillFirstNameInput(firstName : string){
         await this.firstNameInput.fill(firstName)
     }
 
-    async fillLastNameInput(lastName){
+    async fillLastNameInput(lastName : string){
         await this.lastNameInput.fill(lastName);
     }
 
-    async fillEmailInput(email){
+    async fillEmailInput(email : string){
         await this.emailInput.fill(email);
     }
 

@@ -17,7 +17,7 @@ export class MyAccountPage{
         await this.firstNameInput.clear();
     }
     
-    async fillFirstNameInput(newFirstName){
+    async fillFirstNameInput(newFirstName : string){
         await this.firstNameInput.fill(newFirstName);
     }
 

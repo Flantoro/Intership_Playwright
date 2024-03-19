@@ -18,11 +18,11 @@ export class LoginPage{
         this.successRegistrationMessage = page.locator('[id="flash_notice"]');
     }
 
-    async fillLoginInput(login){
+    async fillLoginInput(login : string){
         await this.loginInput.fill(login);
     }
 
-    async fillPasswordIput(password){
+    async fillPasswordIput(password : string){
         await this.passwordInput.fill(password);
     }
 

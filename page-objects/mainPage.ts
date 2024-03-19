@@ -21,7 +21,7 @@ export class MainPage{
         await this.page.goto('https://www.redmine.org/');
     }
 
-    async fillSeacrhInput(data){
+    async fillSeacrhInput(data : string){
         await this.searchInput.fill(data);
     }
 
@@ -46,6 +46,6 @@ export class MainPage{
     }
 
     async myAccountButtonIsNotPresent(){
-        await expect(await this.myAccountButton.isVisible()).toBeFalsy();
+        await expect(await this.myAccountButton).not.toBeVisible();
     }
 }

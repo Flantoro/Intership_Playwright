@@ -5,67 +5,63 @@ import { MyAccountPage } from '../page-objects/MyAccountPage';
 import { RegistrationPage } from '../page-objects/RegistrationPage';
 import { SearchResultPage } from '../page-objects/SearchResultPage';
 import { RandomData } from '../helpers/RandomData';
-import { log } from 'console';
 
 const seacrableData = "QA";
 const randomData = new RandomData();
 const password = randomData.generateRandomData();
+let mainPage;
+let registrationPage;
+let loginPage;
+let searchResultPage;
+let myAccountPage;
+
+test.beforeEach(async ({ page }) => {
+  mainPage = new MainPage(page);
+  registrationPage = new RegistrationPage(page);
+  loginPage = new LoginPage(page);
+  searchResultPage = new SearchResultPage(page);
+  myAccountPage = new MyAccountPage(page);
+  await mainPage.goto();
+});
 
 test('"Search" input field should find a proper information', async ({ page }) => {
-    const main = new MainPage(page);
-    const seachResult = new SearchResultPage(page);
-    await main.goto();
-    await main.fillSeacrhInput(seacrableData);
+    await mainPage.fillSeacrhInput(seacrableData);
     await page.keyboard.press('Enter');
-    await seachResult.searchableDataIsPresentInFirstResult(seacrableData);
+    await searchResultPage.searchableDataIsPresentInFirstResult(seacrableData);
 });
 
 test('Email verification alert is shown after registration', async ({ page }) => {
-  const main = new MainPage(page);
-  const registration = new RegistrationPage(page);
-  const login = new LoginPage(page);
-  await main.goto();
-  await main.clickOnTheRegistrationButton();
-  await registration.fillLoginInput(await randomData.generateRandomData());
-  await registration.fillPasswordInput(password);
-  await registration.fillRepearPasswordInput(password);
-  await registration.fillFirstNameInput("Andrii");
-  await registration.fillLastNameInput("Stetsula");
-  await registration.fillEmailInput(await randomData.generateRandomData() + "@gmail.com");
-  await registration.clickOnSendButton();
-  await login.successfulRegistrationMessageIsShown();
+  await mainPage.clickOnTheRegistrationButton();
+  await registrationPage.fillLoginInput(randomData.generateRandomData());
+  await registrationPage.fillPasswordInput(password);
+  await registrationPage.fillRepearPasswordInput(password);
+  await registrationPage.fillFirstNameInput("Andrii");
+  await registrationPage.fillLastNameInput("Stetsula");
+  await registrationPage.fillEmailInput(randomData.generateRandomData() + "@gmail.com");
+  await registrationPage.clickOnSendButton();
+  await loginPage.successfulRegistrationMessageIsShown();
 });
 
 test('"My account" button is present for logged in user', async ({ page }) => {
-  const main = new MainPage(page);
-  const login = new LoginPage(page);
-  await main.goto();
-  await main.clickOnTheLoginButton();
-  await login.loginWithValidData();
-  await main.myAccountButtonIsPresent();
+  await mainPage.clickOnTheLoginButton();
+  await loginPage.loginWithValidData();
+  await mainPage.myAccountButtonIsPresent();
 });
 
 test('The user should be able to change the First Name in the account settings section', async ({ page }) => {
-  const main = new MainPage(page);
-  const login = new LoginPage(page);
-  const myAccount = new MyAccountPage(page);
-  await main.goto();
-  await main.clickOnTheLoginButton();
-  await login.loginWithValidData();
-  await main.clickOnTheMyAccountButton();
-  await myAccount.clearFirstNameInput();
-  await myAccount.fillFirstNameInput(await randomData.generateRandomData());
-  await myAccount.clickOnTheSubmitButton();
-  await myAccount.successMessageIsDisplayed();
+  await mainPage.clickOnTheLoginButton();
+  await loginPage.loginWithValidData();
+  await mainPage.clickOnTheMyAccountButton();
+  await myAccountPage.clearFirstNameInput();
+  await myAccountPage.fillFirstNameInput(randomData.generateRandomData());
+  await myAccountPage.clickOnTheSubmitButton();
+  await myAccountPage.successMessageIsDisplayed();
 });
 
 test('Log out from the account', async ({ page }) => {
-  const main = new MainPage(page);
-  const login = new LoginPage(page);
-  await main.goto();
-  await main.clickOnTheLoginButton();
-  await login.loginWithValidData();
-  await main.myAccountButtonIsPresent();
-  await main.clickOnTheLogoutButton();
-  await main.myAccountButtonIsNotPresent();
+  await mainPage.clickOnTheLoginButton();
+  await loginPage.loginWithValidData();
+  await mainPage.myAccountButtonIsPresent();
+  await mainPage.clickOnTheLogoutButton();
+  await mainPage.myAccountButtonIsNotPresent();
 });

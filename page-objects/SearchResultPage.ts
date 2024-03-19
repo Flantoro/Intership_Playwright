@@ -7,11 +7,10 @@ export class SearchResultPage{
 
     constructor(page: Page){
         this.page = page;
-        this.firstResultDescription = page.locator('//dd[1]//span[@class="highlight token-0"]');
+        this.firstResultDescription = page.locator('//dd[1]//span[@class="description"]');
     }
 
-    async searchableDataIsPresentInFirstResult(searhableData){
-        let findedString = await this.firstResultDescription.textContent();
-        await expect(findedString?.toLowerCase()).toContain(searhableData.toLowerCase());
+    async searchableDataIsPresentInFirstResult(searhableData : string){
+        expect((await this.firstResultDescription.innerHTML()).toLowerCase()).toContain(searhableData.toLowerCase());
     }
 }
