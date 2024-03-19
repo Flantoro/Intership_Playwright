@@ -20,4 +20,32 @@ class RegistrationPage{
         this.emailInput = page.locator('[id="user_mail"]');
         this.sendButton = page.locator('[name="commit"]');
     }
+
+    async fillLoginInput(login){
+        await this.loginInput.fill(login);
+    }
+
+    async fillPasswordInput(password){
+        await this.passwordInput.fill(password); 
+    }
+
+    async fillRepearPasswordInput(password){
+        await this.repeatPasswordInput.fill(password);
+    }
+
+    async fillFirstNameInput(firstName){
+        await this.firstNameInput.fill(firstName)
+    }
+
+    async fillLastNameInput(lastName){
+        await this.lastNameInput.fill(lastName);
+    }
+
+    async fillEmailInput(email){
+        await this.emailInput.fill(email);
+    }
+
+    async clickOnSendButton(){
+        await this.sendButton.click();
+    }
 }

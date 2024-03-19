@@ -38,6 +38,6 @@ class MainPage{
     }
 
     async myAccountButtonIsPresent(){
-        await this.myAccountButton.isVisible();
+        await expect(this.myAccountButton).toBeVisible();
     }
 }

@@ -12,4 +12,20 @@ class MyAccountPage{
         this.submitButton = page.locator('[class="mobile-hide"]>input');
         this.successMessage = page.locator('[id="flash_notice"]');
     }
+
+    async clearFirstNameInput(){
+        await this.firstNameInput.clear();
+    }
+    
+    async fillFirstNameInput(newFirstName){
+        await this.firstNameInput.fill(newFirstName);
+    }
+
+    async clickOnTheSubmitButton(){
+        this.submitButton.click();
+    }
+
+    async successMessageIsDisplayed(){
+        await expect(this.successMessage).toBeVisible();
+    }
 }

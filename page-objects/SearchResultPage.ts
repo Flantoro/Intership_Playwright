@@ -9,4 +9,8 @@ class SearchResultPage{
         this.page = page;
         this.firstResultDescription = page.locator('//dd[1]//span[@class="description"]');
     }
+
+    async searchableDataIsPresentInFirstResult(searhableData){
+        await expect(this.firstResultDescription).toHaveText(searhableData);
+    }
 }
