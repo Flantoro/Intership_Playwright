@@ -16,4 +16,28 @@ class MainPage{
         this,this.myAccountButton = page.locator('[class="my-account"]');
         this.logInButton = page.locator('[class="logout"]');
     }
+
+    async fillSeacrhInput(data){
+        await this.searchInput.fill(data);
+    }
+
+    async clickOnTheRegistrationButton(){
+        await this.registrationButton.click();
+    }
+
+    async clickOnTheLoginButton(){
+        await this.logInButton.click();
+    }
+
+    async clickOnTheMyAccountButton(){
+        await this.myAccountButton.click();
+    }
+
+    async clickOnTheLogoutButton(){
+        await this.logOutButton.click();
+    }
+
+    async myAccountButtonIsPresent(){
+        await this.myAccountButton.isVisible();
+    }
 }

@@ -15,4 +15,20 @@ class LoginPage{
         this.logInButton = page.locator('[id="login-submit"]');
         this.leaveMeSignedInCheckbox = page.locator('[id="autologin"]');
     }
+
+    async fillUsrnameInput(username){
+        await this.usernameInput.fill(username);
+    }
+
+    async fillPasswordIput(password){
+        await this.passwordInput.fill(password);
+    }
+
+    async clickOnTheLoginButton(){
+        await this.logInButton.click();
+    }
+
+    async checkleaveMeSignedInCheckbox(){
+        await this.leaveMeSignedInCheckbox.check();
+    }
 }
