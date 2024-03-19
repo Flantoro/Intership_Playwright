@@ -1,12 +1,12 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
-class MainPage{
+export class MainPage{
     readonly page: Page;
     readonly searchInput: Locator;
     readonly registrationButton: Locator;
     readonly logInButton: Locator;
     readonly myAccountButton: Locator;
-    readonly logOutButton: Locator;
+    readonly logoutButton: Locator;
 
     constructor(page: Page){
         this.page = page;
@@ -14,7 +14,11 @@ class MainPage{
         this.registrationButton = page.locator('[class="register"]');
         this.logInButton = page.locator('[class="login"]');
         this,this.myAccountButton = page.locator('[class="my-account"]');
-        this.logInButton = page.locator('[class="logout"]');
+        this.logoutButton = page.locator('[class="logout"]');
+    }
+
+    async goto(){
+        await this.page.goto('https://www.redmine.org/');
     }
 
     async fillSeacrhInput(data){
@@ -34,10 +38,14 @@ class MainPage{
     }
 
     async clickOnTheLogoutButton(){
-        await this.logOutButton.click();
+        await this.logoutButton.click();
     }
 
     async myAccountButtonIsPresent(){
         await expect(this.myAccountButton).toBeVisible();
+    }
+
+    async myAccountButtonIsNotPresent(){
+        await expect(await this.myAccountButton.isVisible()).toBeFalsy();
     }
 }
