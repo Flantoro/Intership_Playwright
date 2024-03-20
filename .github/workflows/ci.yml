@@ -34,21 +34,19 @@ jobs:
 
     - name: Generate new Allure report
       run: npx allure generate --clean && npx allure open
-      
+
     - name: Push report to another branch
       run: |
-        git pull origin main
         git config --global user.email "github-actions@github.com"
         git config --global user.name "GitHub Actions"
         git checkout -b allure-report
         git add .
         git commit -m "Add new Allure report"
         git push origin allure-report
- 
-    - name: Setup GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3
+
+    - name: Deploy report to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
+        branch: allure-report
+        folder: allure-report
     
