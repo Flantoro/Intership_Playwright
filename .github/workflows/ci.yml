@@ -46,7 +46,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git checkout -b allure-report
         git pull origin allure-report
-        git merge --no-ff origin/allure-report
+        git merge --no-ff --ff-only origin/allure-report
         git add -A
         git commit -m "Merge remote changes into allure-report branch"
         git push origin allure-report
