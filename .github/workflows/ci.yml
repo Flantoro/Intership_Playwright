@@ -27,28 +27,24 @@ jobs:
       # trying to run tests
       run: npx playwright test
 
-    - name: Copy Allure report data
-      if: success()
+    - name: Copy Allure data from previous runs
       run: |
-        if [ -d "allure-results" ]; then
-          mkdir -p allure-results-previous
-          cp -r allure-results/* allure-results-previous
-        fi
+        mkdir -p allure-results
+        cp -R ${{ github.workspace }}/allure-results/ ./allure-results/ || true
 
-    - name: Generate Allure report
-      if: always()
-      run: npx allure generate --clean
+    - name: Generate new Allure report
+      run: npx allure generate --clean && npx allure open
 
-    - name: Push Allure report to another branch
-      if: always()
+    - name: Pull changes from the main branch
+      run: git pull origin main
+
+    - name: Push report to another branch
       run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "GitHub Actions"
         git checkout -b allure-report
-        git pull origin allure-report
-        git merge --no-ff --ff-only origin/allure-report
-        git add -A
-        git commit -m "Merge remote changes into allure-report branch"
+        git add .
+        git commit -m "Add new Allure report"
         git push origin allure-report
  
     - name: Setup GitHub Pages
