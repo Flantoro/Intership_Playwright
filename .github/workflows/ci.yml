@@ -45,10 +45,11 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         git checkout -b allure-report
-        git pull origin allure-report --ff-only
+        git pull origin allure-report
+        git merge --no-ff origin/allure-report
         git add -A
-        git commit -m "Add Allure report"
-        git push origin allure-report
+        git commit -m "Merge remote changes into allure-report branch"
+        git push origin allure-report 
  
     - name: Setup GitHub Pages
       if: always()
