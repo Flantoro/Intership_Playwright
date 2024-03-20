@@ -34,12 +34,10 @@ jobs:
 
     - name: Generate new Allure report
       run: npx allure generate --clean && npx allure open
-
-    - name: Pull changes from the main branch
-      run: git pull origin main
-
+      
     - name: Push report to another branch
       run: |
+        git pull origin main
         git config --global user.email "github-actions@github.com"
         git config --global user.name "GitHub Actions"
         git checkout -b allure-report
