@@ -42,10 +42,10 @@ jobs:
     - name: Push Allure report to another branch
       if: always()
       run: |
-        git pull
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         git checkout -b allure-report
+        git pull
         git add -A
         git commit -m "Add Allure report"
         git push origin allure-report
