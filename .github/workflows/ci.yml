@@ -1,54 +1,58 @@
-name: Run Playwright Tests and Publish Allure Report
+name: ci
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  Run_test:
+    runs-on: ubuntu-20.04 # Choosing OS
+    strategy:
+      matrix:
+        node-version: [16.15.0]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+      # trying to install npm packages
+    - run: npm i
+    - run: npx playwright install --with-deps 
+    - name: run test
+      # trying to run tests
+      run: npx playwright test
 
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 20.11.1
+    - name: Copy Allure report data
+      if: success()
+      run: |
+        if [ -d "allure-results" ]; then
+          mkdir -p allure-results-previous
+          cp -r allure-results/* allure-results-previous
+        fi
 
-      - name: Install dependencies
-        run: npm install
+    - name: Generate Allure report
+      if: always()
+      run: npx allure generate --clean
 
-      - name: Run tests
-        run: npx playwright test
+    - name: Push Allure report to another branch
+      if: always()
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git checkout -b allure-report
+        git add -A
+        git commit -m "Add Allure report"
+        git push origin allure-report
 
-      - name: Copy Allure report data
-        if: success()
-        run: |
-          if [ -d "allure-results" ]; then
-            mkdir -p allure-results-previous
-            cp -r allure-results/* allure-results-previous
-          fi
-
-      - name: Generate Allure report
-        if: always()
-        run: npx allure generate --clean
-
-      - name: Push Allure report to another branch
-        if: always()
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git checkout -b allure-report
-          git add -A
-          git commit -m "Add Allure report"
-          git push origin allure-report
-
-      - name: Setup GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
+    - name: Setup GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+    
