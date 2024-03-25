@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { MainPage } from '../pages/mainPage';
-import { RegistrationPage } from '../pages/RegistrationPage';
-import { LoginPage } from '../pages/loginPage';
-import { RandomData } from '../helpers/RandomData';
+import { MainPage } from '../pages/mainPage.ts';
+import { RegistrationPage } from '../pages/RegistrationPage.ts';
+import { LoginPage } from '../pages/loginPage.ts';
+import { RandomData } from '../helpers/RandomData.ts';
 
 let password;
 let randomData;
