@@ -3,6 +3,7 @@ import { MainPage } from '../pages/MainPage';
 import { RegistrationPage } from '../pages/RegistrationPage';
 import { LoginPage } from '../pages/LoginPage';
 import { RandomData } from '../helpers/RandomData';
+import { credentials } from '../helpers/credentials.ts';
 
 let password;
 let randomData;
@@ -24,8 +25,8 @@ test('Email verification alert is shown after registration', async ({ page }) =>
     await registrationPage.fillLoginInput(randomData.generateRandomData());
     await registrationPage.fillPasswordInput(password);
     await registrationPage.fillRepearPasswordInput(password);
-    await registrationPage.fillFirstNameInput("Andrii");
-    await registrationPage.fillLastNameInput("Stetsula");
+    await registrationPage.fillFirstNameInput(credentials.firstName);
+    await registrationPage.fillLastNameInput(credentials.lastName);
     await registrationPage.fillEmailInput(randomData.generateRandomData() + "@gmail.com");
     await registrationPage.clickOnSendButton();
     await expect(loginPage.successRegistrationMessage).toBeVisible();
