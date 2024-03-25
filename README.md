@@ -8,7 +8,7 @@
 
 ### Install software and check out the project
 
-- Download and install Node.JS (at least 14.X)(https://nodejs.org/uk/)
+- Download and install Node.JS (latest version)(https://nodejs.org/uk/)
 - Install Visual Studio Code (https://code.visualstudio.com/)
 - Open VS code terminal and clone repository `https://github.com/Flantoro/Intership_Playwright`
 - Install playwright using `npm init playwright@latest`
