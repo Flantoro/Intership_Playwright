@@ -40,12 +40,4 @@ export class MainPage{
     async clickOnTheLogoutButton(){
         await this.logoutButton.click();
     }
-
-    async myAccountButtonIsPresent(){
-        await expect(this.myAccountButton).toBeVisible();
-    }
-
-    async myAccountButtonIsNotPresent(){
-        await expect(await this.myAccountButton).not.toBeVisible();
-    }
 }

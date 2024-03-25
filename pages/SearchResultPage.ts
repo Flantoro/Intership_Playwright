@@ -9,8 +9,4 @@ export class SearchResultPage{
         this.page = page;
         this.firstResultDescription = page.locator('//dd[1]//span[@class="description"]');
     }
-
-    async searchableDataIsPresentInFirstResult(searhableData : string){
-        expect((await this.firstResultDescription.innerHTML()).toLowerCase()).toContain(searhableData.toLowerCase());
-    }
 }

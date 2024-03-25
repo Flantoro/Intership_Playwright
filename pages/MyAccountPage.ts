@@ -24,8 +24,4 @@ export class MyAccountPage{
     async clickOnTheSubmitButton(){
         this.submitButton.click();
     }
-
-    async successMessageIsDisplayed(){
-        await expect(this.successMessage).toBeVisible();
-    }
 }
