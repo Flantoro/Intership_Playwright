@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { MainPage } from '../pages/mainPage.ts';
-import { SearchResultPage } from '../pages/SearchResultPage.ts';
+import { MainPage } from '../pages/MainPage';
+import { SearchResultPage } from '../pages/SearchResultPage';
 
 let searhableData = "QA";
 let mainPage;

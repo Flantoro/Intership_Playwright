@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage.ts';
-import { MainPage } from '../pages/mainPage.ts';
-import { MyAccountPage } from '../pages/MyAccountPage.ts';
-import { RandomData } from '../helpers/RandomData.ts';
-import { credentials } from '../helpers/credentials.ts';
+import { LoginPage } from '../pages/LoginPage';
+import { MainPage } from '../pages/MainPage';
+import { MyAccountPage } from '../pages/MyAccountPage';
+import { RandomData } from '../helpers/RandomData';
+import { credentials } from '../helpers/credentials';
 
 let randomData;
 let mainPage;

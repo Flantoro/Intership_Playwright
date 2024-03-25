@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage.ts';
-import { MainPage } from '../pages/mainPage.ts';
-import { credentials } from '../helpers/credentials.ts';
+import { MainPage } from '../pages/MainPage';
+import { LoginPage } from '../pages/LoginPage';
+import { credentials } from '../helpers/credentials';
 
 let mainPage;
 let loginPage;
