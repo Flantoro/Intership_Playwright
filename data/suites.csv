@@ -1,6 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Mar 20 08:21:01 UTC 2024","Wed Mar 20 08:21:05 UTC 2024","4388","chromium","example.spec.ts","","","","The user should be able to change the First Name in the account settings section",""
-"passed","Wed Mar 20 08:20:58 UTC 2024","Wed Mar 20 08:21:01 UTC 2024","3467","chromium","example.spec.ts","","","","""My account"" button is present for logged in user",""
-"passed","Wed Mar 20 08:20:52 UTC 2024","Wed Mar 20 08:20:58 UTC 2024","5105","chromium","example.spec.ts","","","","Email verification alert is shown after registration",""
-"passed","Wed Mar 20 08:20:48 UTC 2024","Wed Mar 20 08:20:52 UTC 2024","4116","chromium","example.spec.ts","","","","""Search"" input field should find a proper information",""
-"passed","Wed Mar 20 08:21:05 UTC 2024","Wed Mar 20 08:21:09 UTC 2024","3737","chromium","example.spec.ts","","","","Log out from the account",""
